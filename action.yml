@@ -1,0 +1,22 @@
+name: 'List Sub Folders'
+description: 'Get a json list of the folder listed in the specified folder'
+inputs:
+  path:
+    description: 'Folder to list'
+    required: true
+outputs:
+  folders: # id of output
+    description: 'A JSON formatted list of folders'
+    value: ${{ steps.set-folders.outputs.folders }}
+runs:
+  using: 'composite'
+  steps:
+    - run: apt update && apt install tree jq -y
+      shell: bash
+    - id: set-folders
+      shell: bash
+      run: |
+        cd ${{ inputs.path }}
+        folders=$(tree -J -d -L 1 | jq -c '.[0].contents | map(.name)')
+        echo $folders
+        echo "::set-output name=folders::$folders"
