@@ -1,4 +1,4 @@
-name: 'List Sub Folders'
+name: 'List Sub-Folders'
 description: 'Get a json list of the folder listed in the specified folder'
 inputs:
   path:
