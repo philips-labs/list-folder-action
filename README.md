@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v1
 
       - id: jobs
-        uses: philips-labs/list-folders-action@v1
+        uses: philips-labs/list-folder-action@v1
         with:
           path: ./path/to/folder
 
